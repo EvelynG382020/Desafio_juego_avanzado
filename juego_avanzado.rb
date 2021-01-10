@@ -1,108 +1,42 @@
 
+puts 'Turno jugador 1. Por favor seleccione piedra, papel, tijera o salir:
+1. piedra
+2. papel
+3. tijera
+4. salir'"\n"
 
-# variables se cargan con valores iniciales
-user1 = 99
-user2 = 99
-invalido = 0
-menu = 'SI'
+jugador_1 = gets.chomp
 
-#loop de menu para jugar
-while menu.upcase != 'NO' 
-    #limpiar pantalla
-    system("clear")
-
-    #se valida que la variable invalido tenga el valor de 1 , ya que si tiene 1 es que en algun momento tomó un valor invalido
-    if invalido == 1
-        puts "Valor inválido. Debe ser piedra, papel o tijera"
-    end
-
-     # si el usuario1 tiene valor 99 significa que aun no selecciona su jugada
-    if user1 == 99  
-        puts 'Menú; turno JUGADOR 1:'
-        puts "\n" 
-        puts '1) Piedra' 
-        puts '2) Papel' 
-        puts '3) Tijera' 
-        puts '4) Salir'
-        puts 'Escribe "salir" para terminar el juego' 
-        puts "\n"
-        puts 'JUGADOR 1, Ingrese una opción:'
-
-        read1 = gets.chomp
-        menu =  read1   
-
-        if read1.upcase == 'SALIR' 
-            break
-        end
-
-        # juego del usuario
-        user1 = 0   if read1 == 'piedra'
-        user1 = 1   if read1 == 'papel'
-        user1 = 2   if read1 == 'tijera'
-        system("clear")
-    end
+if jugador_1 == 'piedra' || jugador_1 == 'papel' || jugador_1 == 'tijera'
     
-    if user1 != 0 && user1 != 1 && user1 != 2
-        puts "Valor inválido. Debe ser piedra, papel o tijera"
-        # se marca flag invalido en 1, se activa la bandera
-        invalido = 1
-    else
-        # juego del usuario 2
-        puts 'Menú; turno JUGADOR 2:' 
-        puts "\n"
-        puts '1) Piedra' 
-        puts '2) Papel' 
-        puts '3) Tijera' 
-        puts '4) Salir'
-        puts 'Escribe "salir" para terminar el juego' 
-        puts "\n"
-        puts 'JUGADOR 2, Ingrese una opción:'
-        read2 = gets.chomp
-        menu =  read2 
-        if read2.upcase == 'SALIR'
-            break
-        end
+    puts 'Turno jugador 2. Por favor seleccione piedra, papel, tijera o salir:
+1. piedra
+2. papel
+3. tijera
+4. salir'"\n"
 
-        user2 = 0   if read2 == 'piedra'
-        user2 = 1   if read2 == 'papel'
-        user2 = 2   if read2 == 'tijera'
+    jugador_2 = gets.chomp
+
+    if jugador_2 == 'piedra' || jugador_2 == 'papel' || jugador_2 == 'tijera'
+
+        if jugador_1 == 'piedra' && jugador_2 == 'piedra' || jugador_1 == 'tijera' && jugador_2 == 'tijera' || jugador_1 == 'papel' && jugador_2 == 'papel'
+            puts 'Empate. El juego ha terminado.'
+        elsif jugador_1 == 'piedra' && jugador_2 == 'tijera' || jugador_1 == 'papel' && jugador_2 == 'piedra' || jugador_1 == 'tijera' && jugador_2 == 'papel'
+            puts 'Ha ganado el jugador 1. El juego ha terminado.'
+        elsif jugador_1 == 'tijera' && jugador_2 == 'piedra' || jugador_1 == 'piedra' && jugador_2 == 'papel' || jugador_1 == 'papel' && jugador_2 == 'tijera'
+            puts 'Ha ganado el jugador 2. El juego ha terminado.'
+        end
         
-        if user2 != 0 && user2 != 1 && user2 != 2
-            puts "Valor inválido. Debe ser piedra, papel o tijera"
-            # se marca flag invalido en 1, se activa la bandera
-            invalido = 1
-        else
-            # condiciones del juego user1 vs user2
-            puts "\n"
-            puts "\n"
-            system("clear")
-            puts "Usuario 1 jugó #{read1.upcase} y usuario 2 jugó #{read2.upcase}"
-            if user1 == user2
-                puts "Empate"
-            elsif (user1 == 0 && user2 == 1) || (user1 == 1 && user2 == 2) || (user1 == 2 && user2 == 0)
-                puts "Gana Jugador 2"
-            elsif (user1 == 0 && user2 == 2) || (user1 == 1 && user2 == 0) || (user1 == 2 && user2 == 1)
-                puts "Gana Jugador 1"
-            end
-            puts "\n"
-            puts "\n"
+    elsif jugador_2 == 'salir'
+        puts 'Ha salido del juego.'
 
-            puts "Desea jugar nuevamente Si o No"
-            menu = gets.chomp
-            # se pregunta si se desea jugar nuevamente
-            if menu.upcase == "SI"
-                # si se juega nuevamente entonces se reestablecen las variables a sus valores iniciales
-                user1 = 99
-                user2 = 99
-                invalido = 0
-            end
-        end
+    elsif jugador_2 != 'piedra' || jugador_2 != 'papel' || jugador_2 != 'tijera' || jugador_2 != 'salir'
+        puts 'Jugador 2: La opción no es válida.'
     end
 
+elsif jugador_1 == 'salir'
+    puts 'Ha salido del juego.'
+elsif jugador_1 != 'piedra' || jugador_1 != 'papel' || jugador_1 != 'tijera' || jugador_1 != 'salir'
+    puts 'Jugador 1: La opción no es válida.'
 end
-puts "\n"
-puts "\n"
 
-puts "gracias por jugar"
-puts "\n"
-puts "\n"
